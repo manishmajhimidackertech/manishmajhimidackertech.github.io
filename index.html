@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <title>Assessment Prompt Builder</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap");
+
+      :root {
+        --bg: #f5f4f0;
+        --surface: #ffffff;
+        --surface2: #ededea;
+        --border: #d8d7d2;
+        --border-strong: #b5b4ae;
+        --text: #1a1917;
+        --text-muted: #6b6a65;
+        --text-faint: #9e9d98;
+        --accent: #2c6e49;
+        --accent-light: #d8ede2;
+        --accent-text: #1a4a30;
+        --danger: #c0392b;
+        --mono: "DM Mono", monospace;
+        --sans: "DM Sans", sans-serif;
+        --radius: 10px;
+        --radius-sm: 6px;
+        --transition: 0.18s ease;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #171614;
+          --surface: #1f1e1b;
+          --surface2: #2a2925;
+          --border: #333230;
+          --border-strong: #4a4945;
+          --text: #e8e6e0;
+          --text-muted: #9a9890;
+          --text-faint: #5e5c56;
+          --accent: #4caf7d;
+          --accent-light: #1a3528;
+          --accent-text: #6dcf9a;
+          --danger: #e05a4e;
+        }
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: var(--sans);
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        padding: 2.5rem 1rem;
+        line-height: 1.6;
+        transition:
+          background var(--transition),
+          color var(--transition);
+      }
+
+      .container {
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      header {
+        margin-bottom: 2.5rem;
+        text-align: center;
+      }
+
+      header h1 {
+        font-family: var(--sans);
+        font-size: 2.5rem;
+        font-weight: 500;
+        color: var(--text);
+        letter-spacing: -0.04em;
+      }
+
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--border-strong);
+        border-radius: 100px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--text-faint);
+      }
+      * {
+        scrollbar-width: thin;
+        scrollbar-color: var(--border-strong) transparent;
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        transition:
+          background var(--transition),
+          border-color var(--transition);
+      }
+
+      .card-title {
+        font-size: 0.7rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--text-faint);
+        margin-bottom: 1rem;
+      }
+
+      .inputs-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      .field label {
+        display: block;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        margin-bottom: 0.4rem;
+        font-weight: 400;
+      }
+
+      .field input[type="number"] {
+        width: 100%;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        padding: 0.55rem 0.75rem;
+        font-family: var(--mono);
+        font-size: 1.05rem;
+        font-weight: 400;
+        color: var(--text);
+        outline: none;
+        transition:
+          border-color var(--transition),
+          background var(--transition);
+        -moz-appearance: textfield;
+      }
+
+      .field input[type="number"]::-webkit-outer-spin-button,
+      .field input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+      }
+
+      .field input[type="number"]:focus {
+        border-color: var(--accent);
+        background: var(--surface);
+      }
+
+      .range-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: var(--accent-light);
+        color: var(--accent-text);
+        border-radius: 100px;
+        padding: 0.3rem 0.85rem;
+        font-family: var(--mono);
+        font-size: 0.8rem;
+        font-weight: 500;
+        margin-top: 1rem;
+        transition:
+          background var(--transition),
+          color var(--transition);
+      }
+
+      .range-pill span {
+        opacity: 0.6;
+        font-weight: 300;
+        font-size: 0.75rem;
+      }
+
+      .prompt-label-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 0.75rem;
+      }
+
+      .edit-badge {
+        font-size: 0.7rem;
+        color: var(--text-faint);
+        font-weight: 300;
+        font-style: italic;
+      }
+
+      textarea#prompt-area {
+        width: 100%;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        padding: 1rem;
+        font-family: var(--mono);
+        font-size: 0.82rem;
+        line-height: 1.75;
+        color: var(--text);
+        resize: vertical;
+        min-height: 320px;
+        outline: none;
+        transition:
+          border-color var(--transition),
+          background var(--transition);
+        white-space: pre-wrap;
+      }
+
+      textarea#prompt-area:focus {
+        border-color: var(--accent);
+        background: var(--surface);
+      }
+
+      .reset-row {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 0.5rem;
+      }
+
+      button.reset-btn {
+        background: none;
+        border: none;
+        font-family: var(--sans);
+        font-size: 0.78rem;
+        color: var(--text-faint);
+        cursor: pointer;
+        padding: 0.25rem 0;
+        transition: color var(--transition);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        text-decoration-color: transparent;
+      }
+
+      button.reset-btn:hover {
+        color: var(--danger);
+        text-decoration-color: var(--danger);
+      }
+
+      .action-row {
+        display: flex;
+        gap: 0.75rem;
+        margin-top: 1.25rem;
+      }
+
+      button.copy-btn {
+        flex: 1;
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        border-radius: var(--radius-sm);
+        padding: 0.7rem 1rem;
+        font-family: var(--sans);
+        font-size: 0.9rem;
+        font-weight: 500;
+        cursor: pointer;
+        letter-spacing: -0.01em;
+        transition:
+          opacity var(--transition),
+          transform 0.1s ease;
+      }
+
+      button.copy-btn:hover {
+        opacity: 0.88;
+      }
+      button.copy-btn:active {
+        transform: scale(0.98);
+      }
+
+      button.copy-btn.copied {
+        background: var(--accent-light);
+        color: var(--accent-text);
+      }
+
+      .quick-ref {
+        border-top: 1px solid var(--border);
+        padding-top: 1rem;
+        margin-top: 1rem;
+      }
+
+      .quick-ref-title {
+        font-size: 0.7rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--text-faint);
+        margin-bottom: 0.65rem;
+      }
+
+      .quick-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+
+      .chip {
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 100px;
+        padding: 0.28rem 0.75rem;
+        font-family: var(--mono);
+        font-size: 0.78rem;
+        color: var(--text-muted);
+        cursor: pointer;
+        transition:
+          background var(--transition),
+          border-color var(--transition),
+          color var(--transition);
+      }
+
+      .chip:hover {
+        background: var(--accent-light);
+        border-color: var(--accent);
+        color: var(--accent-text);
+      }
+
+      footer {
+        text-align: center;
+        font-size: 0.75rem;
+        color: var(--text-faint);
+        margin-top: 2rem;
+      }
+
+      @media (max-width: 480px) {
+        .inputs-row {
+          grid-template-columns: 1fr;
+        }
+        body {
+          padding: 1.5rem 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Assessment Prompt Builder</h1>
+      </header>
+
+      <div class="card">
+        <div class="card-title">Word count</div>
+        <div class="inputs-row">
+          <div class="field">
+            <label for="wc-input">Target</label>
+            <input
+              type="number"
+              id="wc-input"
+              value="1000"
+              min="100"
+              max="10000"
+            />
+          </div>
+          <div class="field">
+            <label for="buf-input">Buffer (percentage)</label>
+            <input type="number" id="buf-input" value="10" min="0" max="100" />
+          </div>
+        </div>
+        <div class="range-pill" id="range-display">
+          <span>range</span> <strong id="range-text">750 – 850</strong>
+        </div>
+
+        <div class="quick-ref">
+          <div class="quick-ref-title">Quick presets</div>
+          <div class="quick-chips">
+            <div class="chip" onclick="setWC(1000)">1000 words</div>
+            <div class="chip" onclick="setWC(1500)">1500 words</div>
+            <div class="chip" onclick="setWC(2000)">2000 words</div>
+            <div class="chip" onclick="setWC(2500)">2500 words</div>
+            <div class="chip" onclick="setWC(3000)">3000 words</div>
+            <div class="chip" onclick="setWC(4000)">4000 words</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="prompt-label-row">
+          <div class="card-title" style="margin-bottom: 0">
+            Generated prompt
+          </div>
+          <span class="edit-badge">edit and make it yours</span>
+        </div>
+
+        <textarea id="prompt-area" spellcheck="false"></textarea>
+
+        <div class="reset-row">
+          <button class="reset-btn" onclick="resetPrompt()">
+            Reset to default
+          </button>
+        </div>
+
+        <div class="action-row">
+          <button class="copy-btn" id="copy-btn" onclick="copyPrompt()">
+            Copy prompt
+          </button>
+        </div>
+      </div>
+
+      <footer>
+        Works fully offline &nbsp;·&nbsp; Made by Manish Majhi x Claude
+      </footer>
+    </div>
+
+    <script>
+      var userEdited = false;
+      var lastGeneratedPrompt = "";
+
+      function buildPrompt(lo, hi) {
+        return (
+          "Please write a complete docx file based on the uploaded assessment." +
+          "\n" +
+          "\nRequirements:" +
+          "\n- Word count strictly between " +
+          lo +
+          " and " +
+          hi +
+          " words for the entire docx file(paraphrasing increases length so aim for the lower end ignoring what is asked in the assessment file)" +
+          "\n- Use minus sign instead of long dash" +
+          "\n- Do not add any information related to marks or percentage in any heading" +
+          "\n- Include placeholders for screenshots where relevant" +
+          "\n- Generate any required diagrams as SVG" +
+          "\n- Also produce a {filename of docx}_guide.md explaining what I need to do next (e.g. how to get screenshots)" +
+          "\n" +
+          "\nFormatting:" +
+          '\n- Use "justified" alignment for all sentences' +
+          "\n- Do not add citations or references(I will add them myself)" +
+          "\n- Use default Word formatting (Microsoft default blue theme, Aptos font and built in Title, Subtitle, Heading 1, Heading 2, etc. styles) unless the assessment explicitly requires custom formatting" +
+          '\n- Do not add custom "Strong" style in the document. Word already has a built-in "Strong" style and adding a custom one with same name makes "Strong1" appear in the styles pane.' +
+          "\n- Follow any structure or section headings specified in the assessment" +
+          "\n- Do not add anything in header and footer(not even page numbers)"
+        );
+      }
+
+      function getValues() {
+        var wc = parseInt(document.getElementById("wc-input").value) || 800;
+        var buf = parseInt(document.getElementById("buf-input").value) || 10;
+        var lo = Math.round(((100 - buf) * wc) / 100);
+        return { wc: wc, buf: buf, lo: lo, hi: wc };
+      }
+
+      function render(forceRegen) {
+        var v = getValues();
+        document.getElementById("range-text").textContent = v.lo + " – " + v.hi;
+        var newPrompt = buildPrompt(v.lo, v.hi);
+        if (!userEdited || forceRegen) {
+          document.getElementById("prompt-area").value = newPrompt;
+          userEdited = false;
+        }
+        lastGeneratedPrompt = newPrompt;
+      }
+
+      function resetPrompt() {
+        userEdited = false;
+        render(true);
+      }
+
+      function setWC(val) {
+        document.getElementById("wc-input").value = val;
+        userEdited = false;
+        render(true);
+      }
+
+      function copyPrompt() {
+        var text = document.getElementById("prompt-area").value;
+        navigator.clipboard.writeText(text).then(function () {
+          var btn = document.getElementById("copy-btn");
+          btn.textContent = "Copied!";
+          btn.classList.add("copied");
+          setTimeout(function () {
+            btn.textContent = "Copy prompt";
+            btn.classList.remove("copied");
+          }, 2000);
+        });
+      }
+
+      document
+        .getElementById("wc-input")
+        .addEventListener("input", function () {
+          render(false);
+        });
+      document
+        .getElementById("buf-input")
+        .addEventListener("input", function () {
+          render(false);
+        });
+      document
+        .getElementById("prompt-area")
+        .addEventListener("input", function () {
+          userEdited = true;
+        });
+
+      render(true);
+    </script>
+  </body>
+</html>

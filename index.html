@@ -492,6 +492,13 @@
             ? "Please write the Node.js script (using the appropriate npm packages) that would generate the docx file based on the uploaded assessment (do not generate the actual docx file yourself but the SVG diagrams and the {filename}_guide.md file must still be generated and presented as real downloadable files; not folded into the script)."
             : "Please write a complete docx file based on the uploaded assessment.";
 
+        var kilnNote =
+          mode === "script"
+            ? "\n- Write the script using only var and function declarations (no const, let, or arrow functions at the top level) so it runs safely inside Kiln's vm sandbox" +
+              "\n- Do not use require('child_process'), __dirname, fs.rmSync, or any Node built-in that Kiln's sandbox does not expose" +
+              "\n- Fix any docx-js element ordering bugs (e.g. w:pBdr children) inline in the script by walking and mutating the paragraph root array before calling Packer.toBuffer - do not rely on post-processing scripts"
+            : "";
+
         return (
           opening +
           "\n" +
@@ -505,7 +512,8 @@
           "\n- Do not add any information related to marks or percentage in any heading" +
           "\n- Include placeholders for screenshots where relevant as text surrounded by border (do not us single celled table)" +
           "\n- Generate any required diagrams as SVG and present the file for download (do not insert it into the docx file)" +
-          "\n- Also produce a {filename of docx}_guide.md explaining what I need to do next (e.g. how to get screenshots, what to search for in order to add citations and references)" +
+          "\n- Also produce a {filename of docx}_guide.md that has step by step instructions on what I need to do next (e.g. how to install software, how to complete the task, how to get screenshots, what to search for in order to add citations and references, etc. according to the nature of this assessment)" +
+          kilnNote +
           "\n" +
           "\nFormatting:" +
           '\n- Use "justified" alignment for all sentences' +

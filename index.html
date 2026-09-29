@@ -3,10 +3,22 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Manish Majhi — Projects</title>
-  <meta name="description" content="Browser games and web projects by Manish Majhi: Tunnel Trouble 3D and Hostile Horizon, built with Three.js as offline-capable PWAs.">
+  <title>Manish Majhi — Browser Games</title>
+  <meta name="description" content="Browser games by Manish Majhi: Tunnel Arcade, an endless 3D tunnel flyer, and Hostile Horizon, a side-scrolling aerial combat game. Built with Three.js, installable and playable offline.">
   <meta name="theme-color" content="#070b12">
-  <link rel="icon" href="assets/tunnel-trouble.svg" type="image/svg+xml">
+  <meta name="color-scheme" content="dark">
+  <link rel="canonical" href="https://manishmajhimidackertech.github.io/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://manishmajhimidackertech.github.io/">
+  <meta property="og:title" content="Manish Majhi — Browser Games">
+  <meta property="og:description" content="Tunnel Arcade and Hostile Horizon: fast, installable Three.js games that play offline, with every model, texture and sound generated in code.">
+  <meta property="og:image" content="https://manishmajhimidackertech.github.io/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -15,14 +27,19 @@
       --bg: #070b12;
       --bg-2: #0d1522;
       --card: #111b2b;
+      --card-2: #15223a;
       --line: #1f2e44;
       --text: #e6edf6;
       --muted: #8fa1b8;
       --cyan: #7fe8ff;
+      --blue: #3a9dff;
       --orange: #ffb04a;
       --radius: 18px;
+      color-scheme: dark;
     }
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
     html, body { margin: 0; }
     body {
       background:
@@ -32,98 +49,207 @@
       color: var(--text);
       font: 16px/1.6 Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
       min-height: 100vh;
+      overflow-x: hidden;
     }
     a { color: inherit; }
-    .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+    img { display: block; max-width: 100%; height: auto; }
+    :focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+    .skip {
+      position: absolute; left: 16px; top: -48px; z-index: 10; padding: 8px 14px; border-radius: 10px;
+      background: var(--cyan); color: #04121a; font-weight: 600; text-decoration: none;
+    }
+    .skip:focus { top: 12px; }
 
-    header.wrap { padding-top: 72px; padding-bottom: 40px; }
+    /* ---------- top bar ---------- */
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 20px; flex-wrap: wrap; }
+    .brand {
+      display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+      font-family: Orbitron, sans-serif; font-weight: 600; letter-spacing: .08em; font-size: 14px;
+    }
+    .brand img { width: 28px; height: 28px; }
+    .topbar nav { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14px; }
+    .topbar nav a { color: var(--muted); text-decoration: none; }
+    .topbar nav a:hover { color: var(--text); }
+
+    /* ---------- hero ---------- */
+    header.hero-head { padding-top: 64px; padding-bottom: 32px; }
     .eyebrow {
       font-family: Orbitron, sans-serif; font-weight: 600; letter-spacing: .2em;
       text-transform: uppercase; font-size: 12px; color: var(--cyan);
     }
     h1 {
       font-family: Orbitron, sans-serif; font-weight: 800;
-      font-size: clamp(34px, 7vw, 60px); line-height: 1.05; margin: 12px 0 16px;
+      font-size: clamp(32px, 7vw, 60px); line-height: 1.08; margin: 12px 0 16px;
       text-wrap: balance;
     }
-    h1 span {
-      background: linear-gradient(90deg, var(--cyan), #3a9dff 50%, var(--orange));
+    .grad {
+      background: linear-gradient(90deg, var(--cyan), var(--blue) 50%, var(--orange));
       -webkit-background-clip: text; background-clip: text; color: transparent;
     }
-    .lede { color: var(--muted); max-width: 60ch; font-size: 18px; margin: 0; }
-    .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+    .lede { color: var(--muted); max-width: 62ch; font-size: 18px; margin: 0; }
+    .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
 
     .btn {
       display: inline-flex; align-items: center; gap: 8px;
       padding: 10px 16px; border-radius: 999px; text-decoration: none;
       font-weight: 600; font-size: 14px; border: 1px solid var(--line);
-      background: var(--bg-2); transition: border-color .15s, transform .15s;
+      background: var(--bg-2); color: var(--text); transition: border-color .15s, transform .15s, filter .15s;
     }
     .btn:hover { border-color: var(--cyan); transform: translateY(-1px); }
-    .btn.primary { background: var(--cyan); color: #04121a; border-color: var(--cyan); }
-    .btn.primary.warm { background: var(--orange); border-color: var(--orange); color: #1a0d02; }
-    .btn svg { width: 16px; height: 16px; }
+    .btn.cyan { background: var(--cyan); color: #04121a; border-color: var(--cyan); }
+    .btn.warm { background: var(--orange); color: #1a0d02; border-color: var(--orange); }
+    .btn.cyan:hover, .btn.warm:hover { filter: brightness(1.08); }
+    .btn svg { width: 16px; height: 16px; flex: none; }
 
+    /* ---------- section headings ---------- */
+    section { scroll-margin-top: 16px; }
     h2 {
       font-family: Orbitron, sans-serif; font-weight: 600; font-size: 14px;
       letter-spacing: .18em; text-transform: uppercase; color: var(--muted);
-      margin: 24px 0 18px;
+      margin: 56px 0 8px;
     }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 20px; }
+    .section-lede { color: var(--muted); margin: 0 0 24px; max-width: 70ch; }
 
-    .card {
+    /* ---------- projects ---------- */
+    .project {
+      display: grid; gap: 28px; align-items: start;
       background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
-      overflow: hidden; display: flex; flex-direction: column;
+      padding: 16px; margin-bottom: 28px; scroll-margin-top: 16px;
     }
-    .hero {
-      position: relative; aspect-ratio: 16 / 9; display: grid; place-items: center; overflow: hidden;
-    }
-    .hero img { width: 34%; max-width: 150px; border-radius: 24px; position: relative; z-index: 1;
-      box-shadow: 0 20px 50px rgba(0,0,0,.5); }
-    .hero.tunnel {
-      background:
-        repeating-radial-gradient(circle at 50% 50%, rgba(127,232,255,.0) 0 22px, rgba(127,232,255,.22) 23px 24px, rgba(127,232,255,0) 25px 46px),
-        radial-gradient(circle at 50% 50%, #16324d, #02070d 70%);
-    }
-    .hero.horizon {
-      background:
-        radial-gradient(circle at 50% 100%, #ffd36b 0 18%, #f07a1c 24%, transparent 42%),
-        linear-gradient(#0b1522 0%, #1b2f4a 60%, #3b2a3a 100%);
-    }
-    .hero.horizon::after {
-      content: ""; position: absolute; inset: auto 0 0 0; height: 30%;
-      background: #14283c;
-      clip-path: polygon(0 30%, 14% 10%, 27% 26%, 45% 0, 62% 24%, 78% 6%, 100% 26%, 100% 100%, 0 100%);
+    @media (min-width: 960px) {
+      .project { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); padding: 22px; gap: 32px; }
+      .project.flip .gallery { order: 2; }
+      .project .gallery { position: sticky; top: 16px; }
     }
 
-    .body { padding: 22px 22px 24px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
-    .card h3 { font-family: Orbitron, sans-serif; font-size: 22px; margin: 0; }
-    .card p { margin: 0; color: var(--muted); }
+    .gallery { margin: 0; }
+    .shot-main {
+      display: block; position: relative; border-radius: 12px; overflow: hidden;
+      border: 1px solid var(--line); background: #02070d; aspect-ratio: 16 / 9;
+    }
+    .shot-main img { width: 100%; height: 100%; object-fit: cover; }
+    .gallery figcaption { color: var(--muted); font-size: 14px; margin: 10px 2px 12px; min-height: 1.6em; }
+    .thumbs {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 8px;
+      list-style: none; margin: 0; padding: 0;
+    }
+    .thumb {
+      display: block; width: 100%; padding: 0; border: 2px solid transparent; border-radius: 8px; overflow: hidden;
+      background: #02070d; cursor: pointer; aspect-ratio: 16 / 9; opacity: .7; transition: opacity .15s, border-color .15s;
+    }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .thumb:hover { opacity: 1; }
+    .thumb[aria-pressed="true"] { opacity: 1; border-color: var(--accent, var(--cyan)); }
+
+    .info { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+    .info-head { display: flex; align-items: center; gap: 14px; }
+    .info-head img { width: 56px; height: 56px; border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,.45); flex: none; }
+    .info h3 { font-family: Orbitron, sans-serif; font-size: clamp(22px, 3vw, 28px); line-height: 1.15; margin: 0; }
+    .kicker { margin: 2px 0 0; color: var(--accent, var(--cyan)); font-size: 14px; font-weight: 600; }
+    .info p { margin: 0; color: var(--muted); }
+    .info p strong { color: var(--text); font-weight: 600; }
+
+    .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 0; }
+    .stats div { background: var(--bg-2); border: 1px solid var(--line); border-radius: 12px; padding: 10px 8px; text-align: center; }
+    .stats dd { margin: 0; font-family: Orbitron, sans-serif; font-weight: 800; font-size: 24px; line-height: 1.1; color: var(--accent, var(--cyan)); }
+    .stats dt { font-size: 12px; color: var(--muted); line-height: 1.3; margin-top: 4px; }
+    .stats div { display: flex; flex-direction: column-reverse; }
+
+    .features { margin: 0; padding-left: 18px; color: var(--muted); font-size: 15px; }
+    .features li { margin: 6px 0; }
+    .features li::marker { color: var(--accent, var(--cyan)); }
+    .features strong { color: var(--text); font-weight: 600; }
+
+    details.controls { border: 1px solid var(--line); border-radius: 12px; background: var(--bg-2); }
+    details.controls summary {
+      cursor: pointer; padding: 10px 14px; font-weight: 600; font-size: 14px; list-style: none;
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    }
+    details.controls summary::-webkit-details-marker { display: none; }
+    details.controls summary::after { content: "+"; font-size: 18px; line-height: 1; color: var(--muted); }
+    details.controls[open] summary::after { content: "−"; }
+    .table-scroll { overflow-x: auto; padding: 0 14px 12px; }
+    table { border-collapse: collapse; width: 100%; font-size: 13px; }
+    th, td { text-align: left; padding: 6px 10px 6px 0; border-top: 1px solid var(--line); vertical-align: top; }
+    thead th { border-top: 0; color: var(--muted); font-weight: 500; }
+    tbody th { font-weight: 600; white-space: nowrap; }
+    td { color: var(--muted); }
+    .table-note { font-size: 13px; color: var(--muted); padding: 0 14px 12px; margin: 0; }
+
     .tags { display: flex; flex-wrap: wrap; gap: 6px; padding: 0; margin: 0; list-style: none; }
     .tags li {
       font-size: 12px; padding: 3px 10px; border-radius: 999px;
       background: var(--bg-2); border: 1px solid var(--line); color: var(--text);
     }
-    .features { margin: 0; padding-left: 18px; color: var(--muted); font-size: 15px; }
-    .features li { margin: 2px 0; }
-    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; padding-top: 8px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    .tunnel { --accent: var(--cyan); }
+    .horizon { --accent: var(--orange); }
+
+    /* ---------- what's new ---------- */
+    .updates { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); }
+    .update {
+      background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px;
+      border-top: 3px solid var(--accent);
+    }
+    .update h3 { display: flex; align-items: center; gap: 10px; margin: 0 0 4px; font-family: Orbitron, sans-serif; font-size: 18px; }
+    .update h3 img { width: 28px; height: 28px; border-radius: 8px; }
+    .update .when { margin: 0 0 12px; font-size: 13px; color: var(--muted); }
+    .update ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 15px; }
+    .update li { margin: 8px 0; }
+    .update li::marker { color: var(--accent); }
+    .update strong { color: var(--text); font-weight: 600; }
+
+    /* ---------- how they're built ---------- */
+    .pillars { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); }
+    .pillar { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
+    .pillar svg { width: 26px; height: 26px; color: var(--cyan); }
+    .pillar:nth-child(even) svg { color: var(--orange); }
+    .pillar h3 { font-size: 16px; margin: 10px 0 6px; }
+    .pillar p { margin: 0; color: var(--muted); font-size: 15px; }
 
     .note {
       margin-top: 28px; padding: 16px 18px; border-radius: 14px;
       border: 1px dashed var(--line); color: var(--muted); font-size: 14px;
     }
-    footer.wrap { padding-top: 48px; padding-bottom: 40px; color: var(--muted); font-size: 14px; }
+    footer.wrap {
+      padding-top: 48px; padding-bottom: 40px; color: var(--muted); font-size: 14px;
+      display: flex; flex-wrap: wrap; gap: 8px 16px; justify-content: space-between;
+    }
+    footer a { color: var(--muted); }
+    footer a:hover { color: var(--text); }
+
+    @media (max-width: 520px) {
+      .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      header.hero-head { padding-top: 44px; }
+      .lede { font-size: 17px; }
+    }
   </style>
 </head>
 <body>
-  <header class="wrap">
-    <div class="eyebrow">Portfolio · Showcase</div>
-    <h1>Hi, I'm Manish.<br>I build <span>games for the web</span>.</h1>
+  <a class="skip" href="#projects">Skip to projects</a>
+
+  <div class="wrap topbar">
+    <a class="brand" href="./"><img src="assets/favicon.svg" alt="" width="28" height="28">MANISH MAJHI</a>
+    <nav aria-label="Sections">
+      <a href="#projects">Projects</a>
+      <a href="#updates">What's new</a>
+      <a href="#built">How they're built</a>
+      <a href="https://github.com/manishmajhimidackertech">GitHub</a>
+    </nav>
+  </div>
+
+  <header class="wrap hero-head">
+    <div class="eyebrow">Portfolio · Browser games</div>
+    <h1>Hi, I'm Manish.<br>I build <span class="grad">games for the web</span>.</h1>
     <p class="lede">
-      Fast, installable browser games made with Three.js. No downloads, no app store —
-      every texture, model and sound is generated in code, and they keep working offline.
+      Fast, installable 3D games made with Three.js. There's nothing to download and no app store:
+      every model, texture and sound is generated in code, and both games keep working offline.
     </p>
     <div class="links">
+      <a class="btn cyan" href="https://manishmajhimidackertech.github.io/Tunnel-Arcade/">▶ Play Tunnel Arcade</a>
+      <a class="btn warm" href="https://manishmajhimidackertech.github.io/Hostile-Horizon/">▶ Play Hostile Horizon</a>
       <a class="btn" href="https://github.com/manishmajhimidackertech">
         <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
         GitHub profile
@@ -132,59 +258,271 @@
   </header>
 
   <main class="wrap">
-    <h2>Projects</h2>
-    <div class="grid">
+    <section id="projects" aria-labelledby="projects-title">
+      <h2 id="projects-title">Projects</h2>
+      <p class="section-lede">Two games, both playable in the browser on a phone, tablet or computer. The screenshots are real gameplay.</p>
 
-      <article class="card">
-        <div class="hero tunnel"><img src="assets/tunnel-trouble.svg" alt="Tunnel Trouble 3D icon"></div>
-        <div class="body">
-          <h3>Tunnel Trouble 3D</h3>
-          <p>Pilot a small ship through an endless, twisting tunnel. Slip through the gaps in the doors,
-            dodge the bars and, in Mine Mode, steer around drifting mines.</p>
-          <ul class="features">
-            <li>Classic and Mine modes, best score kept per mode</li>
-            <li>Four tunnel styles: Reactor, Laboratory, Bunker, Catacomb</li>
-            <li>Touch joystick, keyboard or gamepad</li>
-            <li>Synthwave soundtrack generated with WebAudio</li>
+      <!-- ================= Tunnel Arcade ================= -->
+      <article class="project tunnel" id="tunnel-arcade" aria-labelledby="ta-title">
+        <figure class="gallery" data-gallery>
+          <a class="shot-main" href="assets/shots/tunnel-reactor.webp">
+            <img src="assets/shots/tunnel-reactor.webp"
+                 srcset="assets/shots/tunnel-reactor-640.webp 640w, assets/shots/tunnel-reactor.webp 1280w"
+                 sizes="(min-width: 1120px) 570px, (min-width: 960px) 52vw, 100vw"
+                 width="1280" height="720" alt="Tunnel Arcade: the ship lines up with a spinning spoke door in the Reactor tunnel">
+          </a>
+          <figcaption>Reactor: lining up with a spinning spoke door</figcaption>
+          <ul class="thumbs" aria-label="Tunnel Arcade screenshots">
+            <li><button type="button" class="thumb" aria-pressed="true" data-shot="tunnel-reactor"
+              data-caption="Reactor: lining up with a spinning spoke door"
+              data-alt="Tunnel Arcade: the ship lines up with a spinning spoke door in the Reactor tunnel"><img src="assets/shots/tunnel-reactor-640.webp" alt="Reactor tunnel" width="640" height="360" loading="lazy"></button></li>
+            <li><button type="button" class="thumb" aria-pressed="false" data-shot="tunnel-laboratory"
+              data-caption="Laboratory: white chevron panels and a bow-tie door"
+              data-alt="Tunnel Arcade: the ship heads for a door with a bow-tie-shaped gap in the white Laboratory tunnel"><img src="assets/shots/tunnel-laboratory-640.webp" alt="Laboratory tunnel" width="640" height="360" loading="lazy"></button></li>
+            <li><button type="button" class="thumb" aria-pressed="false" data-shot="tunnel-bunker"
+              data-caption="Bunker: the glowing hourglass that slows down time"
+              data-alt="Tunnel Arcade: a glowing gold hourglass pickup floats ahead of the ship in the concrete Bunker tunnel"><img src="assets/shots/tunnel-bunker-640.webp" alt="Bunker tunnel with a slow-motion pickup" width="640" height="360" loading="lazy"></button></li>
+            <li><button type="button" class="thumb" aria-pressed="false" data-shot="tunnel-catacomb"
+              data-caption="Catacomb: drifting mines in Mine Mode"
+              data-alt="Tunnel Arcade: spiked mines drift through the sandstone Catacomb tunnel in Mine Mode"><img src="assets/shots/tunnel-catacomb-640.webp" alt="Catacomb tunnel in Mine Mode" width="640" height="360" loading="lazy"></button></li>
+            <li><button type="button" class="thumb" aria-pressed="false" data-shot="tunnel-menu"
+              data-caption="Title screen: Classic or Mine Mode"
+              data-alt="Tunnel Arcade title screen with Classic and Mine Mode buttons"><img src="assets/shots/tunnel-menu-640.webp" alt="Title screen" width="640" height="360" loading="lazy"></button></li>
           </ul>
-          <ul class="tags"><li>Three.js</li><li>Vite</li><li>PWA</li><li>WebAudio</li></ul>
+        </figure>
+
+        <div class="info">
+          <div class="info-head">
+            <img src="assets/tunnel-arcade.svg" alt="" width="56" height="56">
+            <div>
+              <h3 id="ta-title">Tunnel Arcade</h3>
+              <p class="kicker">Endless 3D tunnel flyer</p>
+            </div>
+          </div>
+          <p>
+            Pilot a small ship through an endless, twisting tunnel. Slip through the gaps in the doors,
+            dodge the bars and, in Mine Mode, steer around drifting mines. The tunnel curves, rolls and changes
+            style the deeper you fly, and the pace keeps building. Inspired by the mobile classic <em>Tunnel Trouble 3D</em>.
+          </p>
+          <dl class="stats">
+            <div><dt>game modes</dt><dd>2</dd></div>
+            <div><dt>tunnel styles</dt><dd>4</dd></div>
+            <div><dt>obstacle shapes</dt><dd>11</dd></div>
+            <div><dt>ways to steer</dt><dd>4</dd></div>
+          </dl>
+          <ul class="features">
+            <li><strong>Slow-motion pickups.</strong> Grab the glowing hourglass to ease the world down to under half speed
+              for a few seconds. Each one sits on a line that's guaranteed safe to fly through the next obstacle.</li>
+            <li><strong>Tilt steering</strong> on phones and tablets, alongside the floating joystick, keyboard and gamepad.</li>
+            <li>Doors with triangle, half, slot, cross, circle and spoke openings, plus striped bars. Spinning versions unlock as you speed up.</li>
+            <li>Four styles modelled on the original: Reactor, Laboratory, Bunker and Catacomb. Best score kept per mode.</li>
+            <li>LED dot-matrix “3-2-1-GO!” countdown and a synthwave soundtrack synthesised with WebAudio.</li>
+          </ul>
+          <details class="controls">
+            <summary>Controls</summary>
+            <div class="table-scroll">
+              <table>
+                <thead><tr><th scope="col">Action</th><th scope="col">Touch</th><th scope="col">Keyboard</th><th scope="col">Gamepad</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">Steer</th><td>Drag anywhere, or tilt</td><td>Arrows / WASD</td><td>Left stick / D-pad</td></tr>
+                  <tr><th scope="row">Start / retry</th><td>Tap a mode / Retry</td><td>Enter / Space</td><td>A</td></tr>
+                  <tr><th scope="row">Pause</th><td>Pause button</td><td>Esc / P</td><td>Start</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="table-note">Optional inverted Y axis. Phones play in landscape.</p>
+          </details>
+          <ul class="tags" aria-label="Built with"><li>Three.js</li><li>Vite</li><li>PWA</li><li>WebAudio</li><li>node:test</li></ul>
           <div class="actions">
-            <a class="btn primary" href="https://manishmajhimidackertech.github.io/Tunnel-Arcade/">▶ Play</a>
-            <a class="btn" href="https://github.com/manishmajhimidackertech/Tunnel-Arcade">Source</a>
+            <a class="btn cyan" href="https://manishmajhimidackertech.github.io/Tunnel-Arcade/">▶ Play Tunnel Arcade</a>
+            <a class="btn" href="https://github.com/manishmajhimidackertech/Tunnel-Arcade">Source code</a>
           </div>
         </div>
       </article>
 
-      <article class="card">
-        <div class="hero horizon"><img src="assets/hostile-horizon.svg" alt="Hostile Horizon icon"></div>
-        <div class="body">
-          <h3>Hostile Horizon</h3>
-          <p>A side-scrolling aerial combat game. Shoot down fighters and gunships, bomb tanks and flak guns,
-            take out the boss at the end of each sortie and upgrade your jet in the hangar.</p>
-          <ul class="features">
-            <li>Five theatres, from Verdant Valley to Night Siege</li>
-            <li>Bosses: the B-9 Stratofortress and the Leviathan Airship</li>
-            <li>Cannons, homing missiles and gravity bombs</li>
-            <li>Six upgrade tracks, saved progress, offline play</li>
+      <!-- ================= Hostile Horizon ================= -->
+      <article class="project horizon flip" id="hostile-horizon" aria-labelledby="hh-title">
+        <figure class="gallery" data-gallery>
+          <a class="shot-main" href="assets/shots/horizon-coast.webp">
+            <img src="assets/shots/horizon-coast.webp"
+                 srcset="assets/shots/horizon-coast-640.webp 640w, assets/shots/horizon-coast.webp 1280w"
+                 sizes="(min-width: 1120px) 570px, (min-width: 960px) 52vw, 100vw"
+                 width="1280" height="720" alt="Hostile Horizon: an A-12 Thunderbolt fires on the Dreadnought Battleship boss beside a chain of palm islands" loading="lazy">
+          </a>
+          <figcaption>Coastal Assault: an A-12 Thunderbolt takes on the Dreadnought Battleship</figcaption>
+          <ul class="thumbs" aria-label="Hostile Horizon screenshots">
+            <li><button type="button" class="thumb" aria-pressed="true" data-shot="horizon-coast"
+              data-caption="Coastal Assault: an A-12 Thunderbolt takes on the Dreadnought Battleship"
+              data-alt="Hostile Horizon: an A-12 Thunderbolt fires on the Dreadnought Battleship boss beside a chain of palm islands"><img src="assets/shots/horizon-coast-640.webp" alt="Coastal Assault" width="640" height="360" loading="lazy"></button></li>
+            <li><button type="button" class="thumb" aria-pressed="false" data-shot="horizon-valley"
+              data-caption="Verdant Valley: the F-5 Hawk against the B-9 Stratofortress"
+              data-alt="Hostile Horizon: the F-5 Hawk trades fire with the B-9 Stratofortress bomber over green hills"><img src="assets/shots/horizon-valley-640.webp" alt="Verdant Valley" width="640" height="360" loading="lazy"></button></li>
+            <li><button type="button" class="thumb" aria-pressed="false" data-shot="horizon-canyon"
+              data-caption="Red Canyon: a V-7 Viper bombing past the rock hoodoos"
+              data-alt="Hostile Horizon: a V-7 Viper drops bombs over red canyon mesas, rock hoodoos and cacti"><img src="assets/shots/horizon-canyon-640.webp" alt="Red Canyon" width="640" height="360" loading="lazy"></button></li>
+            <li><button type="button" class="thumb" aria-pressed="false" data-shot="horizon-frozen"
+              data-caption="Frozen Front: an F-40 Raptor meets a fighter squadron"
+              data-alt="Hostile Horizon: an F-40 Raptor faces a formation of enemy fighters above snowy tundra and tanks"><img src="assets/shots/horizon-frozen-640.webp" alt="Frozen Front" width="640" height="360" loading="lazy"></button></li>
+            <li><button type="button" class="thumb" aria-pressed="false" data-shot="horizon-storm"
+              data-caption="Storm Front: dogfighting in the driving rain"
+              data-alt="Hostile Horizon: a Su-X Specter shoots down a fighter in heavy rain under dark storm clouds"><img src="assets/shots/horizon-storm-640.webp" alt="Storm Front" width="640" height="360" loading="lazy"></button></li>
+            <li><button type="button" class="thumb" aria-pressed="false" data-shot="horizon-volcano"
+              data-caption="Volcano Ridge: the Nightwing Stealth Bomber on a carpet-bombing run"
+              data-alt="Hostile Horizon: an X-1 Nova flies beneath the Nightwing stealth bomber as it drops bombs over volcanoes"><img src="assets/shots/horizon-volcano-640.webp" alt="Volcano Ridge" width="640" height="360" loading="lazy"></button></li>
+            <li><button type="button" class="thumb" aria-pressed="false" data-shot="horizon-city"
+              data-caption="Metropolis: the Crimson Ace dives in at dusk"
+              data-alt="Hostile Horizon: an F-40 Raptor over a skyscraper skyline at dusk as the red Crimson Ace boss dives in"><img src="assets/shots/horizon-city-640.webp" alt="Metropolis" width="640" height="360" loading="lazy"></button></li>
+            <li><button type="button" class="thumb" aria-pressed="false" data-shot="horizon-night"
+              data-caption="Night Siege: sweeping watchtower searchlights"
+              data-alt="Hostile Horizon: a Su-X Specter flies over a dark forest crossed by watchtower searchlight beams"><img src="assets/shots/horizon-night-640.webp" alt="Night Siege" width="640" height="360" loading="lazy"></button></li>
+            <li><button type="button" class="thumb" aria-pressed="false" data-shot="horizon-hangar"
+              data-caption="The hangar: six aircraft, each with its own upgrades"
+              data-alt="Hostile Horizon hangar screen showing the F-40 Raptor, its stats and six upgrade tracks"><img src="assets/shots/horizon-hangar-640.webp" alt="Hangar" width="640" height="360" loading="lazy"></button></li>
           </ul>
-          <ul class="tags"><li>Three.js</li><li>Vite</li><li>PWA</li><li>Workbox</li></ul>
+        </figure>
+
+        <div class="info">
+          <div class="info-head">
+            <img src="assets/hostile-horizon.svg" alt="" width="56" height="56">
+            <div>
+              <h3 id="hh-title">Hostile Horizon</h3>
+              <p class="kicker">Side-scrolling aerial combat</p>
+            </div>
+          </div>
+          <p>
+            Fly a jet through enemy territory. Shoot down fighters and gunships, bomb tanks, flak guns and warships,
+            and take out the boss at the end of each sortie. Spend what you earn on new aircraft and upgrades in the
+            hangar. Inspired by the classic Flash game <em>Hostile Skies</em>.
+          </p>
+          <dl class="stats">
+            <div><dt>theatres</dt><dd>8</dd></div>
+            <div><dt>aircraft</dt><dd>6</dd></div>
+            <div><dt>bosses</dt><dd>7</dd></div>
+            <div><dt>map hazards</dt><dd>4</dd></div>
+          </dl>
+          <ul class="features">
+            <li><strong>Eight theatres</strong>, each with its own terrain and weather: Verdant Valley, Red Canyon, Coastal Assault,
+              Frozen Front, Storm Front, Volcano Ridge, Metropolis and Night Siege.</li>
+            <li><strong>Six aircraft</strong>, from the F-5 Hawk to the X-1 Nova. Each has its own trade-off (paired or triple
+              missiles and bombs, self-repair on the Viper and Specter) and its own five-level upgrade tracks.</li>
+            <li><strong>Seven bosses</strong>, including the B-9 Stratofortress, the Leviathan Airship and the Crimson Ace
+              dogfighter, each with an enraged second phase.</li>
+            <li><strong>Hazards that hit both sides:</strong> lightning, falling lava bombs, rooftop torpedoes and watchtower
+              searchlights that launch missiles.</li>
+            <li>Cannons, homing missiles and gravity bombs, a combo multiplier and saved progress.</li>
+          </ul>
+          <details class="controls">
+            <summary>Controls</summary>
+            <div class="table-scroll">
+              <table>
+                <thead><tr><th scope="col">Action</th><th scope="col">Keyboard</th><th scope="col">Mouse</th><th scope="col">Touch</th><th scope="col">Gamepad</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">Fly</th><td>WASD / Arrows</td><td>Move pointer</td><td>Drag left side</td><td>Left stick</td></tr>
+                  <tr><th scope="row">Cannons</th><td>Space (hold)</td><td>Left button</td><td>FIRE (hold)</td><td>A / RT</td></tr>
+                  <tr><th scope="row">Missile</th><td>E</td><td>Right button</td><td>MSL</td><td>B / RB</td></tr>
+                  <tr><th scope="row">Bomb</th><td>Q</td><td>Wheel / middle</td><td>BOMB</td><td>X / LB</td></tr>
+                  <tr><th scope="row">Pause</th><td>Esc / P</td><td>—</td><td>II button</td><td>Start</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="table-note">Optional auto-fire on touch screens.</p>
+          </details>
+          <ul class="tags" aria-label="Built with"><li>Three.js</li><li>Vite</li><li>PWA</li><li>Workbox</li><li>WebAudio</li></ul>
           <div class="actions">
-            <a class="btn primary warm" href="https://manishmajhimidackertech.github.io/Hostile-Horizon/">▶ Play</a>
-            <a class="btn" href="https://github.com/manishmajhimidackertech/Hostile-Horizon">Source</a>
+            <a class="btn warm" href="https://manishmajhimidackertech.github.io/Hostile-Horizon/">▶ Play Hostile Horizon</a>
+            <a class="btn" href="https://github.com/manishmajhimidackertech/Hostile-Horizon">Source code</a>
           </div>
         </div>
       </article>
+    </section>
 
-    </div>
+    <!-- ================= What's new ================= -->
+    <section id="updates" aria-labelledby="updates-title">
+      <h2 id="updates-title">What's new</h2>
+      <p class="section-lede">Both games got a big round of updates in September 2026.</p>
+      <div class="updates">
+        <article class="update tunnel">
+          <h3><img src="assets/tunnel-arcade.svg" alt="" width="28" height="28">Tunnel Arcade</h3>
+          <p class="when">September 2026</p>
+          <ul>
+            <li><strong>New name.</strong> Tunnel Trouble 3D is now Tunnel Arcade, with a redesigned app icon and proper favicons.</li>
+            <li><strong>Slow-motion pickups.</strong> Hourglasses appear once a run has built up pace, and ease time down and back up smoothly.</li>
+            <li><strong>Tilt steering</strong> for phones and tablets, and a prompt to rotate to landscape (a run pauses while the phone is upright).</li>
+            <li><strong>Better feel.</strong> A gentler opening pace that builds steadily, and smoother steering.</li>
+          </ul>
+        </article>
+        <article class="update horizon">
+          <h3><img src="assets/hostile-horizon.svg" alt="" width="28" height="28">Hostile Horizon</h3>
+          <p class="when">September 2026</p>
+          <ul>
+            <li><strong>Aircraft shop.</strong> Six jets, each with its own ordnance trade-off and its own upgrades.</li>
+            <li><strong>Eight maps</strong> (up from five) and <strong>five new bosses</strong>, with the boss rotating each time a map comes round again.</li>
+            <li><strong>Map hazards</strong> that hit you and the enemy: lightning, lava bombs, vigilante torpedoes and searchlights.</li>
+            <li><strong>Polish.</strong> Physically believable motion for bosses, enemies and projectiles, a new explosion sound,
+              a reworked hangar and a new app icon.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
 
-    <p class="note">
-      Both games are installable Progressive Web Apps: open one on your phone and choose
-      “Add to Home Screen” to play it like a native app, even without a connection.
-    </p>
+    <!-- ================= How they're built ================= -->
+    <section id="built" aria-labelledby="built-title">
+      <h2 id="built-title">How they're built</h2>
+      <p class="section-lede">Both games share the same approach: small, fast and self-contained.</p>
+      <div class="pillars">
+        <div class="pillar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7z"/><path d="M12 22V12M20.66 7L12 12 3.34 7"/></svg>
+          <h3>Generated in code</h3>
+          <p>Every 3D model, texture, sound effect and music track is created at runtime. Apart from the app icons, there are no image or audio files to download.</p>
+        </div>
+        <div class="pillar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.55a11 11 0 0114.08 0M1.42 9a16 16 0 0121.16 0M8.53 16.11a6 6 0 016.95 0"/><path d="M12 20h.01"/><path d="M2 2l20 20"/></svg>
+          <h3>Plays offline</h3>
+          <p>A service worker precaches each game, so once it has loaded it runs without a connection. Updates install in the background.</p>
+        </div>
+        <div class="pillar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="3"/><path d="M6 12h4M8 10v4"/><path d="M15 11h.01M18 13h.01"/></svg>
+          <h3>Any device, any input</h3>
+          <p>Touch, keyboard, mouse and gamepad, plus tilt steering in Tunnel Arcade. On phones they play full screen in landscape.</p>
+        </div>
+        <div class="pillar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 0114-5.3L20 9"/><path d="M20 4v5h-5"/><path d="M20 12a8 8 0 01-14 5.3L4 15"/><path d="M4 20v-5h5"/></svg>
+          <h3>Built and shipped by CI</h3>
+          <p>Three.js and Vite. GitHub Actions builds each game and deploys it to GitHub Pages on every push, after running Tunnel Arcade's unit tests.</p>
+        </div>
+      </div>
+
+      <p class="note">
+        Both games are installable Progressive Web Apps: open one on your phone and choose
+        “Add to Home Screen” (or “Install app”) to play it like a native app, even without a connection.
+      </p>
+    </section>
   </main>
 
   <footer class="wrap">
-    © 2026 Manish Majhi · Built with plain HTML &amp; CSS, hosted on GitHub Pages.
+    <span>© 2026 Manish Majhi · Plain HTML &amp; CSS on GitHub Pages.</span>
+    <a href="https://github.com/manishmajhimidackertech">github.com/manishmajhimidackertech</a>
   </footer>
+
+  <script>
+    // Screenshot galleries: clicking a thumbnail shows it in the main frame.
+    for (const gallery of document.querySelectorAll('[data-gallery]')) {
+      const link = gallery.querySelector('.shot-main');
+      const img = link.querySelector('img');
+      const caption = gallery.querySelector('figcaption');
+      const thumbs = gallery.querySelectorAll('.thumb');
+      for (const thumb of thumbs) {
+        thumb.addEventListener('click', () => {
+          const base = 'assets/shots/' + thumb.dataset.shot;
+          img.src = base + '.webp';
+          img.srcset = base + '-640.webp 640w, ' + base + '.webp 1280w';
+          img.alt = thumb.dataset.alt;
+          link.href = base + '.webp';
+          caption.textContent = thumb.dataset.caption;
+          for (const t of thumbs) t.setAttribute('aria-pressed', String(t === thumb));
+        });
+      }
+    }
+  </script>
 </body>
 </html>

@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manish Majhi — Projects</title>
+  <meta name="description" content="Browser games and web projects by Manish Majhi: Tunnel Trouble 3D and Hostile Horizon, built with Three.js as offline-capable PWAs.">
+  <meta name="theme-color" content="#070b12">
+  <link rel="icon" href="assets/tunnel-trouble.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #070b12;
+      --bg-2: #0d1522;
+      --card: #111b2b;
+      --line: #1f2e44;
+      --text: #e6edf6;
+      --muted: #8fa1b8;
+      --cyan: #7fe8ff;
+      --orange: #ffb04a;
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body {
+      background:
+        radial-gradient(1200px 600px at 80% -10%, rgba(58, 157, 255, .14), transparent 60%),
+        radial-gradient(900px 500px at -10% 10%, rgba(240, 122, 28, .10), transparent 60%),
+        var(--bg);
+      color: var(--text);
+      font: 16px/1.6 Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+      min-height: 100vh;
+    }
+    a { color: inherit; }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+
+    header.wrap { padding-top: 72px; padding-bottom: 40px; }
+    .eyebrow {
+      font-family: Orbitron, sans-serif; font-weight: 600; letter-spacing: .2em;
+      text-transform: uppercase; font-size: 12px; color: var(--cyan);
+    }
+    h1 {
+      font-family: Orbitron, sans-serif; font-weight: 800;
+      font-size: clamp(34px, 7vw, 60px); line-height: 1.05; margin: 12px 0 16px;
+      text-wrap: balance;
+    }
+    h1 span {
+      background: linear-gradient(90deg, var(--cyan), #3a9dff 50%, var(--orange));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .lede { color: var(--muted); max-width: 60ch; font-size: 18px; margin: 0; }
+    .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 16px; border-radius: 999px; text-decoration: none;
+      font-weight: 600; font-size: 14px; border: 1px solid var(--line);
+      background: var(--bg-2); transition: border-color .15s, transform .15s;
+    }
+    .btn:hover { border-color: var(--cyan); transform: translateY(-1px); }
+    .btn.primary { background: var(--cyan); color: #04121a; border-color: var(--cyan); }
+    .btn.primary.warm { background: var(--orange); border-color: var(--orange); color: #1a0d02; }
+    .btn svg { width: 16px; height: 16px; }
+
+    h2 {
+      font-family: Orbitron, sans-serif; font-weight: 600; font-size: 14px;
+      letter-spacing: .18em; text-transform: uppercase; color: var(--muted);
+      margin: 24px 0 18px;
+    }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 20px; }
+
+    .card {
+      background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+      overflow: hidden; display: flex; flex-direction: column;
+    }
+    .hero {
+      position: relative; aspect-ratio: 16 / 9; display: grid; place-items: center; overflow: hidden;
+    }
+    .hero img { width: 34%; max-width: 150px; border-radius: 24px; position: relative; z-index: 1;
+      box-shadow: 0 20px 50px rgba(0,0,0,.5); }
+    .hero.tunnel {
+      background:
+        repeating-radial-gradient(circle at 50% 50%, rgba(127,232,255,.0) 0 22px, rgba(127,232,255,.22) 23px 24px, rgba(127,232,255,0) 25px 46px),
+        radial-gradient(circle at 50% 50%, #16324d, #02070d 70%);
+    }
+    .hero.horizon {
+      background:
+        radial-gradient(circle at 50% 100%, #ffd36b 0 18%, #f07a1c 24%, transparent 42%),
+        linear-gradient(#0b1522 0%, #1b2f4a 60%, #3b2a3a 100%);
+    }
+    .hero.horizon::after {
+      content: ""; position: absolute; inset: auto 0 0 0; height: 30%;
+      background: #14283c;
+      clip-path: polygon(0 30%, 14% 10%, 27% 26%, 45% 0, 62% 24%, 78% 6%, 100% 26%, 100% 100%, 0 100%);
+    }
+
+    .body { padding: 22px 22px 24px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+    .card h3 { font-family: Orbitron, sans-serif; font-size: 22px; margin: 0; }
+    .card p { margin: 0; color: var(--muted); }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; padding: 0; margin: 0; list-style: none; }
+    .tags li {
+      font-size: 12px; padding: 3px 10px; border-radius: 999px;
+      background: var(--bg-2); border: 1px solid var(--line); color: var(--text);
+    }
+    .features { margin: 0; padding-left: 18px; color: var(--muted); font-size: 15px; }
+    .features li { margin: 2px 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; padding-top: 8px; }
+
+    .note {
+      margin-top: 28px; padding: 16px 18px; border-radius: 14px;
+      border: 1px dashed var(--line); color: var(--muted); font-size: 14px;
+    }
+    footer.wrap { padding-top: 48px; padding-bottom: 40px; color: var(--muted); font-size: 14px; }
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <div class="eyebrow">Portfolio · Showcase</div>
+    <h1>Hi, I'm Manish.<br>I build <span>games for the web</span>.</h1>
+    <p class="lede">
+      Fast, installable browser games made with Three.js. No downloads, no app store —
+      every texture, model and sound is generated in code, and they keep working offline.
+    </p>
+    <div class="links">
+      <a class="btn" href="https://github.com/manishmajhimidackertech">
+        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        GitHub profile
+      </a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h2>Projects</h2>
+    <div class="grid">
+
+      <article class="card">
+        <div class="hero tunnel"><img src="assets/tunnel-trouble.svg" alt="Tunnel Trouble 3D icon"></div>
+        <div class="body">
+          <h3>Tunnel Trouble 3D</h3>
+          <p>Pilot a small ship through an endless, twisting tunnel. Slip through the gaps in the doors,
+            dodge the bars and, in Mine Mode, steer around drifting mines.</p>
+          <ul class="features">
+            <li>Classic and Mine modes, best score kept per mode</li>
+            <li>Four tunnel styles: Reactor, Laboratory, Bunker, Catacomb</li>
+            <li>Touch joystick, keyboard or gamepad</li>
+            <li>Synthwave soundtrack generated with WebAudio</li>
+          </ul>
+          <ul class="tags"><li>Three.js</li><li>Vite</li><li>PWA</li><li>WebAudio</li></ul>
+          <div class="actions">
+            <a class="btn primary" href="https://manishmajhimidackertech.github.io/Tunnel-Arcade/">▶ Play</a>
+            <a class="btn" href="https://github.com/manishmajhimidackertech/Tunnel-Arcade">Source</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="hero horizon"><img src="assets/hostile-horizon.svg" alt="Hostile Horizon icon"></div>
+        <div class="body">
+          <h3>Hostile Horizon</h3>
+          <p>A side-scrolling aerial combat game. Shoot down fighters and gunships, bomb tanks and flak guns,
+            take out the boss at the end of each sortie and upgrade your jet in the hangar.</p>
+          <ul class="features">
+            <li>Five theatres, from Verdant Valley to Night Siege</li>
+            <li>Bosses: the B-9 Stratofortress and the Leviathan Airship</li>
+            <li>Cannons, homing missiles and gravity bombs</li>
+            <li>Six upgrade tracks, saved progress, offline play</li>
+          </ul>
+          <ul class="tags"><li>Three.js</li><li>Vite</li><li>PWA</li><li>Workbox</li></ul>
+          <div class="actions">
+            <a class="btn primary warm" href="https://manishmajhimidackertech.github.io/Hostile-Horizon/">▶ Play</a>
+            <a class="btn" href="https://github.com/manishmajhimidackertech/Hostile-Horizon">Source</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="note">
+      Both games are installable Progressive Web Apps: open one on your phone and choose
+      “Add to Home Screen” to play it like a native app, even without a connection.
+    </p>
+  </main>
+
+  <footer class="wrap">
+    © 2026 Manish Majhi · Built with plain HTML &amp; CSS, hosted on GitHub Pages.
+  </footer>
+</body>
+</html>

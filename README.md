@@ -6,7 +6,7 @@ Personal showcase site, served by GitHub Pages at
 It is a single static page (`index.html`, no build step) that shows off my browser games, with real gameplay
 screenshots, a feature rundown and a "What's new" section for each:
 
-- [Tunnel Arcade](https://github.com/manishmajhimidackertech/Tunnel-Arcade) (formerly Tunnel Trouble 3D): endless 3D
+- [Tunnel Arcade](https://github.com/manishmajhimidackertech/Tunnel-Arcade): endless 3D
   tunnel flyer with slow-motion pickups and tilt steering (Three.js PWA)
 - [Hostile Horizon](https://github.com/manishmajhimidackertech/Hostile-Horizon): side-scrolling aerial combat with eight
   maps, six aircraft and seven bosses (Three.js PWA)

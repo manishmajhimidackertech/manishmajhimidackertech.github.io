@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Manish Majhi — Browser Games</title>
-  <meta name="description" content="Browser games by Manish Majhi: Tunnel Arcade, an endless 3D tunnel flyer, and Hostile Horizon, a side-scrolling aerial combat game. Built with Three.js, installable and playable offline.">
+  <title>Manish Majhi - Browser Games</title>
+  <meta name="description" content="Browser games by Manish Majhi: Tunnel Arcade, an endless 3D tunnel flyer, Hostile Horizon, a side-scrolling aerial combat game, and Torrondola, a pixel-art tower stacker. Installable and playable offline.">
   <meta name="theme-color" content="#070b12">
   <meta name="color-scheme" content="dark">
   <link rel="canonical" href="https://manishmajhimidackertech.github.io/">
@@ -12,8 +12,8 @@
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://manishmajhimidackertech.github.io/">
-  <meta property="og:title" content="Manish Majhi — Browser Games">
-  <meta property="og:description" content="Tunnel Arcade and Hostile Horizon: fast, installable Three.js games that play offline, with every model, texture and sound generated in code.">
+  <meta property="og:title" content="Manish Majhi - Browser Games">
+  <meta property="og:description" content="Tunnel Arcade, Hostile Horizon and Torrondola: fast, installable browser games that play offline, with every model, sprite and sound generated in code.">
   <meta property="og:image" content="https://manishmajhimidackertech.github.io/assets/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -34,6 +34,7 @@
       --cyan: #7fe8ff;
       --blue: #3a9dff;
       --orange: #ffb04a;
+      --rose: #ff8fb4;
       --radius: 18px;
       color-scheme: dark;
     }
@@ -99,7 +100,8 @@
     .btn:hover { border-color: var(--cyan); transform: translateY(-1px); }
     .btn.cyan { background: var(--cyan); color: #04121a; border-color: var(--cyan); }
     .btn.warm { background: var(--orange); color: #1a0d02; border-color: var(--orange); }
-    .btn.cyan:hover, .btn.warm:hover { filter: brightness(1.08); }
+    .btn.rose { background: var(--rose); color: #1f0612; border-color: var(--rose); }
+    .btn.cyan:hover, .btn.warm:hover, .btn.rose:hover { filter: brightness(1.08); }
     .btn svg { width: 16px; height: 16px; flex: none; }
 
     /* ---------- section headings ---------- */
@@ -186,6 +188,16 @@
 
     .tunnel { --accent: var(--cyan); }
     .horizon { --accent: var(--orange); }
+    .torrondola { --accent: var(--rose); }
+
+    /* Portrait game (Torrondola): tall screenshots in a narrower gallery column. */
+    .gallery.portrait .shot-main { aspect-ratio: 9 / 16; width: min(100%, 340px); margin: 0 auto; }
+    .gallery.portrait figcaption { text-align: center; }
+    .gallery.portrait .thumbs { grid-template-columns: repeat(auto-fill, minmax(40px, 1fr)); }
+    .gallery.portrait .thumb { aspect-ratio: 9 / 16; }
+    @media (min-width: 960px) {
+      .project.portrait { grid-template-columns: minmax(0, 380px) minmax(0, 1fr); }
+    }
 
     /* ---------- what's new ---------- */
     .updates { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); }
@@ -244,12 +256,14 @@
     <div class="eyebrow">Portfolio · Browser games</div>
     <h1>Hi, I'm Manish.<br>I build <span class="grad">games for the web</span>.</h1>
     <p class="lede">
-      Fast, installable 3D games made with Three.js. There's nothing to download and no app store:
-      every model, texture and sound is generated in code, and both games keep working offline.
+      Fast, installable games that run in the browser: two 3D games made with Three.js and a pixel-art tower stacker.
+      There's nothing to download and no app store: every model, sprite, texture and sound is generated in code,
+      and all three games keep working offline.
     </p>
     <div class="links">
       <a class="btn cyan" href="https://manishmajhimidackertech.github.io/Tunnel-Arcade/">▶ Play Tunnel Arcade</a>
       <a class="btn warm" href="https://manishmajhimidackertech.github.io/Hostile-Horizon/">▶ Play Hostile Horizon</a>
+      <a class="btn rose" href="https://manishmajhimidackertech.github.io/torrondola/">▶ Play Torrondola</a>
       <a class="btn" href="https://github.com/manishmajhimidackertech">
         <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
         GitHub profile
@@ -260,7 +274,7 @@
   <main class="wrap">
     <section id="projects" aria-labelledby="projects-title">
       <h2 id="projects-title">Projects</h2>
-      <p class="section-lede">Two games, both playable in the browser on a phone, tablet or computer. The screenshots are real gameplay.</p>
+      <p class="section-lede">Three games, all playable in the browser on a phone, tablet or computer. The screenshots are real gameplay.</p>
 
       <!-- ================= Tunnel Arcade ================= -->
       <article class="project tunnel" id="tunnel-arcade" aria-labelledby="ta-title">
@@ -376,8 +390,8 @@
               data-caption="Night Siege: sweeping watchtower searchlights"
               data-alt="Hostile Horizon: a Su-X Specter flies over a dark forest crossed by watchtower searchlight beams"><img src="assets/shots/horizon-night-640.webp" alt="Night Siege" width="640" height="360" loading="lazy"></button></li>
             <li><button type="button" class="thumb" aria-pressed="false" data-shot="horizon-hangar"
-              data-caption="The hangar: six aircraft, each with its own upgrades"
-              data-alt="Hostile Horizon hangar screen showing the F-40 Raptor, its stats and six upgrade tracks"><img src="assets/shots/horizon-hangar-640.webp" alt="Hangar" width="640" height="360" loading="lazy"></button></li>
+              data-caption="The hangar: pick a jet, upgrade it and size up the next boss"
+              data-alt="Hostile Horizon hangar screen showing the F-40 Raptor, six upgrade tracks and the next mission's target, features and weakness"><img src="assets/shots/horizon-hangar-640.webp" alt="Hangar" width="640" height="360" loading="lazy"></button></li>
           </ul>
         </figure>
 
@@ -434,13 +448,112 @@
           </div>
         </div>
       </article>
+
+      <!-- ================= Torrondola ================= -->
+      <article class="project torrondola portrait" id="torrondola" aria-labelledby="to-title">
+        <figure class="gallery portrait" data-gallery data-small="360" data-large="720">
+          <a class="shot-main" href="assets/shots/torrondola-stack.webp">
+            <img src="assets/shots/torrondola-stack.webp"
+                 srcset="assets/shots/torrondola-stack-360.webp 360w, assets/shots/torrondola-stack.webp 720w"
+                 sizes="340px"
+                 width="720" height="1280" alt="Torrondola: a red palazzo floor hangs from a crane above a five-floor tower, over Tuscan hills" loading="lazy">
+          </a>
+          <figcaption>Floor 6: the crane swings the next floor into place</figcaption>
+          <ul class="thumbs" aria-label="Torrondola screenshots">
+            <li><button type="button" class="thumb" aria-pressed="true" data-shot="torrondola-stack"
+              data-caption="Floor 6: the crane swings the next floor into place"
+              data-alt="Torrondola: a red palazzo floor hangs from a crane above a five-floor tower, over Tuscan hills"><img src="assets/shots/torrondola-stack-360.webp" alt="Early tower" width="360" height="640" loading="lazy"></button></li>
+            <li><button type="button" class="thumb" aria-pressed="false" data-shot="torrondola-pick"
+              data-caption="Benedizione! Every 10 floors Nonna deals three blessing cards"
+              data-alt="Torrondola: three blessing cards, Ancora, Azzardo and Calamita, with Azzardo picked and its effect described"><img src="assets/shots/torrondola-pick-360.webp" alt="Blessing cards" width="360" height="640" loading="lazy"></button></li>
+            <li><button type="button" class="thumb" aria-pressed="false" data-shot="torrondola-sunset"
+              data-caption="Floor 27: sunset, and the wind starts to blow"
+              data-alt="Torrondola: a yellow floor swings over the tower against a swirling sunset sky as Nonna says Tira vento!"><img src="assets/shots/torrondola-sunset-360.webp" alt="Sunset" width="360" height="640" loading="lazy"></button></li>
+            <li><button type="button" class="thumb" aria-pressed="false" data-shot="torrondola-night"
+              data-caption="Floor 50: climbing past the moon"
+              data-alt="Torrondola: a floor hangs in front of the moon in a dark blue night sky, with a x6 combo"><img src="assets/shots/torrondola-night-360.webp" alt="Night" width="360" height="640" loading="lazy"></button></li>
+            <li><button type="button" class="thumb" aria-pressed="false" data-shot="torrondola-space"
+              data-caption="Floor 70: into space, with gusts from the side"
+              data-alt="Torrondola: the tower reaches starry space while a wind warning points left"><img src="assets/shots/torrondola-space-360.webp" alt="Space" width="360" height="640" loading="lazy"></button></li>
+            <li><button type="button" class="thumb" aria-pressed="false" data-shot="torrondola-over"
+              data-caption="The results card: a postcard of your tower, signed by Nonna"
+              data-alt="Torrondola results screen: an airmail postcard showing the tower, score, best combo and blessings, with Play again, Menu and Save image buttons"><img src="assets/shots/torrondola-over-360.webp" alt="Results postcard" width="360" height="640" loading="lazy"></button></li>
+            <li><button type="button" class="thumb" aria-pressed="false" data-shot="torrondola-title"
+              data-caption="Title screen over the Tuscan countryside"
+              data-alt="Torrondola title screen with the rainbow logo over the Tuscan hills and Nonna in the corner"><img src="assets/shots/torrondola-title-360.webp" alt="Title screen" width="360" height="640" loading="lazy"></button></li>
+          </ul>
+        </figure>
+
+        <div class="info">
+          <div class="info-head">
+            <img src="assets/torrondola.png" alt="" width="56" height="56">
+            <div>
+              <h3 id="to-title">Torrondola</h3>
+              <p class="kicker">Pixel-art tower stacker</p>
+            </div>
+          </div>
+          <p>
+            <em>La torretta che dondola</em>: the little swinging tower. A crane swings each floor of an Italian
+            palazzo on a rope. Drop it and try to land it straight on the floor below. Off-centre landings make
+            the tower sway, and if the top swings too far the whole thing comes down (<em>crollo!</em>).
+            Nonna watches from the corner and has opinions about every drop.
+          </p>
+          <dl class="stats">
+            <div><dt>blessing cards</dt><dd>9</dd></div>
+            <div><dt>skies to climb</dt><dd>4</dd></div>
+            <div><dt>combo callouts</dt><dd>7</dd></div>
+            <div><dt>dependencies</dt><dd>0</dd></div>
+          </dl>
+          <ul class="features">
+            <li><strong>Perfect drops</strong> snap dead centre, build a combo and calm the sway, from <em>Perfetto</em>
+              all the way up to <em>Leggendario</em>.</li>
+            <li><strong>Blessings every 10 floors.</strong> Nonna deals three cards and you keep one: a slower crane,
+              an extra life, a bigger perfect zone, or a faster crane for double points.</li>
+            <li><strong>Golden floors</strong> worth triple points, gusts of wind from floor 25, pigeons on the roof and a
+              little bulldozer that clears away fallen floors.</li>
+            <li><strong>The sky changes as you climb</strong>, from a blue day over the Tuscan countryside to sunset,
+              night and finally space, past a hot-air balloon, the moon, satellites and the odd UFO.</li>
+            <li>An airmail <strong>results postcard</strong> of your tower to share or save, and a looping chiptune tarantella.</li>
+          </ul>
+          <details class="controls">
+            <summary>Controls</summary>
+            <div class="table-scroll">
+              <table>
+                <thead><tr><th scope="col">Action</th><th scope="col">Touch / mouse</th><th scope="col">Keyboard</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">Drop the floor</th><td>Tap anywhere</td><td>Space / Enter / ↓</td></tr>
+                  <tr><th scope="row">Pick a blessing</th><td>Tap a card, tap again to keep it</td><td>← → or 1–3, then Space</td></tr>
+                  <tr><th scope="row">Pause</th><td>Pause icon</td><td>P / Esc</td></tr>
+                  <tr><th scope="row">Mute</th><td>Speaker icon</td><td>M</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="table-note">Phones play it full screen in portrait.</p>
+          </details>
+          <ul class="tags" aria-label="Built with"><li>Canvas 2D</li><li>ES modules</li><li>PWA</li><li>WebAudio</li><li>No build step</li></ul>
+          <div class="actions">
+            <a class="btn rose" href="https://manishmajhimidackertech.github.io/torrondola/">▶ Play Torrondola</a>
+            <a class="btn" href="https://github.com/manishmajhimidackertech/torrondola">Source code</a>
+          </div>
+        </div>
+      </article>
     </section>
 
     <!-- ================= What's new ================= -->
     <section id="updates" aria-labelledby="updates-title">
       <h2 id="updates-title">What's new</h2>
-      <p class="section-lede">Both games got a big round of updates in September 2026.</p>
+      <p class="section-lede">Torrondola is out, and Tunnel Arcade and Hostile Horizon got a big round of updates in September 2026.</p>
       <div class="updates">
+        <article class="update torrondola">
+          <h3><img src="assets/torrondola.png" alt="" width="28" height="28">Torrondola</h3>
+          <p class="when">New game · November 2026</p>
+          <ul>
+            <li><strong>A brand-new game.</strong> Stack an Italian palazzo floor by floor from a swinging crane.</li>
+            <li><strong>Nine blessing cards</strong>, dealt by Nonna every 10 floors, change how each run plays out.</li>
+            <li><strong>Wind, golden floors and a sky</strong> that climbs from Tuscan countryside to outer space.</li>
+            <li><strong>Pixel art drawn in code</strong>, chiptune sound, and a results postcard you can share.</li>
+          </ul>
+        </article>
         <article class="update tunnel">
           <h3><img src="assets/tunnel-arcade.svg" alt="" width="28" height="28">Tunnel Arcade</h3>
           <p class="when">September 2026</p>
@@ -468,12 +581,12 @@
     <!-- ================= How they're built ================= -->
     <section id="built" aria-labelledby="built-title">
       <h2 id="built-title">How they're built</h2>
-      <p class="section-lede">Both games share the same approach: small, fast and self-contained.</p>
+      <p class="section-lede">All three games share the same approach: small, fast and self-contained.</p>
       <div class="pillars">
         <div class="pillar">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7z"/><path d="M12 22V12M20.66 7L12 12 3.34 7"/></svg>
           <h3>Generated in code</h3>
-          <p>Every 3D model, texture, sound effect and music track is created at runtime. Apart from the app icons, there are no image or audio files to download.</p>
+          <p>Every 3D model, pixel-art sprite, texture, sound effect and music track is created at runtime. Apart from the app icons, there are no image or audio files to download.</p>
         </div>
         <div class="pillar">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.55a11 11 0 0114.08 0M1.42 9a16 16 0 0121.16 0M8.53 16.11a6 6 0 016.95 0"/><path d="M12 20h.01"/><path d="M2 2l20 20"/></svg>
@@ -483,17 +596,17 @@
         <div class="pillar">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="3"/><path d="M6 12h4M8 10v4"/><path d="M15 11h.01M18 13h.01"/></svg>
           <h3>Any device, any input</h3>
-          <p>Touch, keyboard, mouse and gamepad, plus tilt steering in Tunnel Arcade. On phones they play full screen in landscape.</p>
+          <p>Touch, keyboard and mouse, gamepads in the 3D games, and tilt steering in Tunnel Arcade. On phones they play full screen: the 3D games in landscape, Torrondola in portrait.</p>
         </div>
         <div class="pillar">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 0114-5.3L20 9"/><path d="M20 4v5h-5"/><path d="M20 12a8 8 0 01-14 5.3L4 15"/><path d="M4 20v-5h5"/></svg>
           <h3>Built and shipped by CI</h3>
-          <p>Three.js and Vite. GitHub Actions builds each game and deploys it to GitHub Pages on every push, after running Tunnel Arcade's unit tests.</p>
+          <p>The 3D games use Three.js and Vite; Torrondola is plain ES modules with no build step. GitHub Actions deploys each game to GitHub Pages on every push, after running Tunnel Arcade's unit tests.</p>
         </div>
       </div>
 
       <p class="note">
-        Both games are installable Progressive Web Apps: open one on your phone and choose
+        All three games are installable Progressive Web Apps: open one on your phone and choose
         “Add to Home Screen” (or “Install app”) to play it like a native app, even without a connection.
       </p>
     </section>
@@ -511,11 +624,13 @@
       const img = link.querySelector('img');
       const caption = gallery.querySelector('figcaption');
       const thumbs = gallery.querySelectorAll('.thumb');
+      const small = gallery.dataset.small || '640';
+      const large = gallery.dataset.large || '1280';
       for (const thumb of thumbs) {
         thumb.addEventListener('click', () => {
           const base = 'assets/shots/' + thumb.dataset.shot;
           img.src = base + '.webp';
-          img.srcset = base + '-640.webp 640w, ' + base + '.webp 1280w';
+          img.srcset = base + '-' + small + '.webp ' + small + 'w, ' + base + '.webp ' + large + 'w';
           img.alt = thumb.dataset.alt;
           link.href = base + '.webp';
           caption.textContent = thumb.dataset.caption;

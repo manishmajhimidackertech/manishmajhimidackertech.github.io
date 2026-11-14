@@ -4,7 +4,7 @@ Personal showcase site, served by GitHub Pages at
 <https://manishmajhimidackertech.github.io/>.
 
 It is a single static page (`index.html`, no build step) that shows off my browser games, with real gameplay
-screenshots, a feature rundown and a "What's new" section for each:
+screenshots and a feature rundown for each:
 
 - [Tunnel Arcade](https://github.com/manishmajhimidackertech/Tunnel-Arcade): endless 3D
   tunnel flyer with slow-motion pickups and tilt steering (Three.js PWA)
@@ -17,7 +17,10 @@ screenshots, a feature rundown and a "What's new" section for each:
 
 ```
 index.html             the whole page: markup, CSS and a few lines of JS for the screenshot galleries
-assets/favicon.svg     site icon
+favicon.ico            site favicon (bowling, 16/32/48/64 px)
+assets/bowling.svg, bowling-32.png
+                       the same favicon as SVG and 32x32 PNG
+assets/favicon.svg     logo next to the name in the top bar
 assets/tunnel-arcade.svg, hostile-horizon.svg, torrondola.png
                        app icons copied from each game repo
 assets/shots/          gameplay screenshots as WebP: landscape at 1280x720 with -640 thumbnails,
@@ -44,3 +47,8 @@ The Play buttons point to each game's own project site
 (`https://manishmajhimidackertech.github.io/<Repo>/`). Each game repo already has a Pages workflow; in
 each one go to **Settings → Pages → Source: GitHub Actions**, then push to `main` (or run the workflow
 manually) to deploy it.
+
+## Credits
+
+Bowling favicon artwork: [Twemoji](https://github.com/twitter/twemoji), (c) Twitter, Inc. and other
+contributors, licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).

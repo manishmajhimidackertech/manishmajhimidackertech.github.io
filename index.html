@@ -55,6 +55,27 @@
       min-height: 100vh;
       overflow-x: hidden;
     }
+    /* ---------- scrollbars ---------- */
+    ::-webkit-scrollbar { width: 12px; height: 12px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, var(--cyan), var(--blue));
+      border: 3px solid var(--bg); border-radius: 999px; background-clip: padding-box;
+    }
+    ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #a6f0ff, #5cb0ff); background-clip: padding-box; }
+    ::-webkit-scrollbar-corner { background: var(--bg); }
+    .table-scroll::-webkit-scrollbar { height: 8px; }
+    .table-scroll::-webkit-scrollbar-track { background: transparent; }
+    .table-scroll::-webkit-scrollbar-thumb {
+      background: linear-gradient(90deg, var(--cyan), var(--blue));
+      border: 2px solid var(--bg-2); background-clip: padding-box;
+    }
+    /* Firefox, which has no ::-webkit-scrollbar */
+    @supports not selector(::-webkit-scrollbar) {
+      html { scrollbar-color: var(--blue) var(--bg); }
+      .table-scroll { scrollbar-width: thin; scrollbar-color: var(--blue) transparent; }
+    }
+
     a { color: inherit; }
     img { display: block; max-width: 100%; height: auto; }
     :focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }

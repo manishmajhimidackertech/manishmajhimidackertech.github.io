@@ -65,17 +65,6 @@
     }
     .skip:focus { top: 12px; }
 
-    /* ---------- top bar ---------- */
-    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 20px; flex-wrap: wrap; }
-    .brand {
-      display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
-      font-family: Orbitron, sans-serif; font-weight: 600; letter-spacing: .08em; font-size: 14px;
-    }
-    .brand img { width: 28px; height: 28px; }
-    .topbar nav { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14px; }
-    .topbar nav a { color: var(--muted); text-decoration: none; }
-    .topbar nav a:hover { color: var(--text); }
-
     /* ---------- hero ---------- */
     header.hero-head { padding-top: 64px; padding-bottom: 32px; }
     .eyebrow {
@@ -104,7 +93,6 @@
     .btn.warm { background: var(--orange); color: #1a0d02; border-color: var(--orange); }
     .btn.rose { background: var(--rose); color: #1f0612; border-color: var(--rose); }
     .btn.cyan:hover, .btn.warm:hover, .btn.rose:hover { filter: brightness(1.08); }
-    .btn svg { width: 16px; height: 16px; flex: none; }
 
     /* ---------- section headings ---------- */
     section { scroll-margin-top: 16px; }
@@ -208,10 +196,6 @@
     .pillar h3 { font-size: 16px; margin: 10px 0 6px; }
     .pillar p { margin: 0; color: var(--muted); font-size: 15px; }
 
-    .note {
-      margin-top: 28px; padding: 16px 18px; border-radius: 14px;
-      border: 1px dashed var(--line); color: var(--muted); font-size: 14px;
-    }
     footer.wrap {
       padding-top: 48px; padding-bottom: 40px; color: var(--muted); font-size: 14px;
       text-align: center;
@@ -226,15 +210,6 @@
 <body>
   <a class="skip" href="#projects">Skip to projects</a>
 
-  <div class="wrap topbar">
-    <a class="brand" href="./"><img src="assets/bowling.svg" alt="" width="28" height="28">MANISH MAJHI</a>
-    <nav aria-label="Sections">
-      <a href="#projects">Projects</a>
-      <a href="#built">How they're built</a>
-      <a href="https://github.com/manishmajhimidackertech">GitHub</a>
-    </nav>
-  </div>
-
   <header class="wrap hero-head">
     <div class="eyebrow">Portfolio</div>
     <h1>Hi, I'm Manish.<br>I build <span class="grad">games for the web</span>.</h1>
@@ -242,10 +217,6 @@
       <a class="btn cyan" href="https://manishmajhimidackertech.github.io/Tunnel-Arcade/">▶ Play Tunnel Arcade</a>
       <a class="btn warm" href="https://manishmajhimidackertech.github.io/Hostile-Horizon/">▶ Play Hostile Horizon</a>
       <a class="btn rose" href="https://manishmajhimidackertech.github.io/torrondola/">▶ Play Torrondola</a>
-      <a class="btn" href="https://github.com/manishmajhimidackertech">
-        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-        GitHub profile
-      </a>
     </div>
   </header>
 
@@ -541,11 +512,6 @@
           <p>The 3D games use Three.js and Vite; Torrondola is plain ES modules with no build step. GitHub Actions deploys each game to GitHub Pages on every push, after running Tunnel Arcade's unit tests.</p>
         </div>
       </div>
-
-      <p class="note">
-        All three games are installable Progressive Web Apps: open one on your phone and choose
-        “Add to Home Screen” (or “Install app”).
-      </p>
     </section>
   </main>
 

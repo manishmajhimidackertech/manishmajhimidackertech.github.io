@@ -19,7 +19,7 @@ screenshots and a feature rundown for each:
 index.html             the whole page: markup, CSS and a few lines of JS for the screenshot galleries
 favicon.ico            site favicon (bowling, 16/32/48/64 px)
 assets/bowling.svg, bowling-32.png
-                       the same icon as SVG and 32x32 PNG; the SVG is also the logo in the top bar
+                       the same icon as SVG and 32x32 PNG
 assets/tunnel-arcade.svg, hostile-horizon.svg, torrondola.png
                        app icons copied from each game repo
 assets/shots/          gameplay screenshots as WebP: landscape at 1280x720 with -640 thumbnails,

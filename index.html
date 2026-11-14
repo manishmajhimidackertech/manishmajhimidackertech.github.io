@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Browser Games | Manish Majhi</title>
-  <meta name="description" content="Browser games by Manish Majhi: Tunnel Arcade, an endless 3D tunnel flyer, Hostile Horizon, a side-scrolling aerial combat game, and Torrondola, a pixel-art tower stacker. Installable and playable offline.">
+  <meta name="description" content="Browser games by Manish Majhi: Hostile Horizon, a side-scrolling aerial combat game, Tunnel Arcade, an endless 3D tunnel flyer, and Torrondola, a pixel-art tower stacker. Installable and playable offline.">
   <meta name="theme-color" content="#070b12">
   <meta name="color-scheme" content="dark">
   <link rel="canonical" href="https://manishmajhimidackertech.github.io/">
@@ -16,7 +16,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://manishmajhimidackertech.github.io/">
   <meta property="og:title" content="Browser Games | Manish Majhi">
-  <meta property="og:description" content="Tunnel Arcade, Hostile Horizon and Torrondola: fast, installable browser games that play offline, with every model, sprite and sound generated in code.">
+  <meta property="og:description" content="Hostile Horizon, Tunnel Arcade and Torrondola: fast, installable browser games that play offline, with every model, sprite and sound generated in code.">
   <meta property="og:image" content="https://manishmajhimidackertech.github.io/assets/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -236,8 +236,8 @@
     <div class="eyebrow">Portfolio</div>
     <h1>Hi, I'm Manish.<br>I build <span class="grad">games for the web</span>.</h1>
     <div class="links">
-      <a class="btn cyan" href="https://manishmajhimidackertech.github.io/Tunnel-Arcade/">▶ Play Tunnel Arcade</a>
       <a class="btn warm" href="https://manishmajhimidackertech.github.io/Hostile-Horizon/">▶ Play Hostile Horizon</a>
+      <a class="btn cyan" href="https://manishmajhimidackertech.github.io/Tunnel-Arcade/">▶ Play Tunnel Arcade</a>
       <a class="btn rose" href="https://manishmajhimidackertech.github.io/torrondola/">▶ Play Torrondola</a>
     </div>
   </header>
@@ -265,7 +265,7 @@
         <div class="pillar">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 0114-5.3L20 9"/><path d="M20 4v5h-5"/><path d="M20 12a8 8 0 01-14 5.3L4 15"/><path d="M4 20v-5h5"/></svg>
           <h3>Built and shipped by CI</h3>
-          <p>The 3D games use Three.js and Vite; Torrondola is plain ES modules with no build step. GitHub Actions deploys each game to GitHub Pages on every push, after running Tunnel Arcade's unit tests.</p>
+          <p>Hostile Horizon uses Three.js and Tunnel Arcade hand-written WebGL 2, both built with Vite; Torrondola is plain ES modules with no build step. GitHub Actions deploys each game to GitHub Pages on every push, after running Tunnel Arcade's unit tests.</p>
         </div>
       </div>
     </section>
@@ -273,95 +273,14 @@
     <section id="projects" aria-labelledby="projects-title">
       <h2 id="projects-title">Projects</h2>
 
-      <!-- ================= Tunnel Arcade ================= -->
-      <article class="project tunnel" id="tunnel-arcade" aria-labelledby="ta-title">
-        <figure class="gallery" data-gallery>
-          <a class="shot-main" href="assets/shots/tunnel-reactor.webp">
-            <img src="assets/shots/tunnel-reactor.webp"
-                 srcset="assets/shots/tunnel-reactor-640.webp 640w, assets/shots/tunnel-reactor.webp 1280w"
-                 sizes="(min-width: 1120px) 570px, (min-width: 960px) 52vw, 100vw"
-                 width="1280" height="720" alt="Tunnel Arcade: the ship lines up with a spinning spoke door in the Reactor tunnel">
-          </a>
-          <figcaption>Reactor: lining up with a spinning spoke door</figcaption>
-          <ul class="thumbs" aria-label="Tunnel Arcade screenshots">
-            <li><button type="button" class="thumb" aria-pressed="true" data-shot="tunnel-reactor"
-              data-caption="Reactor: lining up with a spinning spoke door"
-              data-alt="Tunnel Arcade: the ship lines up with a spinning spoke door in the Reactor tunnel"><img src="assets/shots/tunnel-reactor-640.webp" alt="Reactor tunnel" width="640" height="360" loading="lazy"></button></li>
-            <li><button type="button" class="thumb" aria-pressed="false" data-shot="tunnel-laboratory"
-              data-caption="Laboratory: white chevron panels and a bow-tie door"
-              data-alt="Tunnel Arcade: the ship heads for a door with a bow-tie-shaped gap in the white Laboratory tunnel"><img src="assets/shots/tunnel-laboratory-640.webp" alt="Laboratory tunnel" width="640" height="360" loading="lazy"></button></li>
-            <li><button type="button" class="thumb" aria-pressed="false" data-shot="tunnel-bunker"
-              data-caption="Bunker: the glowing hourglass that slows down time"
-              data-alt="Tunnel Arcade: a glowing gold hourglass pickup floats ahead of the ship in the concrete Bunker tunnel"><img src="assets/shots/tunnel-bunker-640.webp" alt="Bunker tunnel with a slow-motion pickup" width="640" height="360" loading="lazy"></button></li>
-            <li><button type="button" class="thumb" aria-pressed="false" data-shot="tunnel-catacomb"
-              data-caption="Catacomb: drifting mines in Mine Mode"
-              data-alt="Tunnel Arcade: spiked mines drift through the sandstone Catacomb tunnel in Mine Mode"><img src="assets/shots/tunnel-catacomb-640.webp" alt="Catacomb tunnel in Mine Mode" width="640" height="360" loading="lazy"></button></li>
-            <li><button type="button" class="thumb" aria-pressed="false" data-shot="tunnel-menu"
-              data-caption="Title screen: Classic or Mine Mode"
-              data-alt="Tunnel Arcade title screen with Classic, Mine Mode, Settings and How to Play buttons"><img src="assets/shots/tunnel-menu-640.webp" alt="Title screen" width="640" height="360" loading="lazy"></button></li>
-          </ul>
-        </figure>
-
-        <div class="info">
-          <div class="info-head">
-            <img src="assets/tunnel-arcade.svg" alt="" width="56" height="56">
-            <div>
-              <h3 id="ta-title">Tunnel Arcade</h3>
-              <p class="kicker">Endless 3D tunnel flyer</p>
-            </div>
-          </div>
-          <p>
-            Pilot a small ship through an endless, twisting tunnel. Slip through the gaps in the doors,
-            dodge the bars and, in Mine Mode, steer around drifting mines. The tunnel curves, rolls and changes
-            style the deeper you fly, and the pace keeps building. Inspired by the mobile classic <em>Tunnel Trouble 3D</em>.
-          </p>
-          <dl class="stats">
-            <div><dt>game modes</dt><dd>2</dd></div>
-            <div><dt>tunnel styles</dt><dd>4</dd></div>
-            <div><dt>obstacle shapes</dt><dd>11</dd></div>
-            <div><dt>ways to steer</dt><dd>4</dd></div>
-          </dl>
-          <ul class="features">
-            <li><strong>Slow-motion pickups.</strong> Grab the glowing hourglass to ease the world down to under half speed
-              for a few seconds. Each one sits on a line that's guaranteed safe to fly through the next obstacle.</li>
-            <li><strong>Tilt steering</strong> on phones and tablets, alongside the floating joystick, keyboard and gamepad.</li>
-            <li>Doors with triangle, half, slot, cross, circle and spoke openings, plus striped bars. Spinning versions unlock as you speed up.</li>
-            <li>Four styles modelled on the original: Reactor, Laboratory, Bunker and Catacomb. Best score kept per mode.</li>
-            <li>LED dot-matrix “3-2-1-GO!” countdown and a synthwave soundtrack synthesised with WebAudio.</li>
-          </ul>
-          <details class="controls">
-            <summary>Controls</summary>
-            <div class="table-scroll">
-              <table>
-                <thead><tr><th scope="col">Action</th><th scope="col">Touch</th><th scope="col">Keyboard</th><th scope="col">Gamepad</th></tr></thead>
-                <tbody>
-                  <tr><th scope="row">Steer</th><td>Drag anywhere, or tilt</td><td>Arrows / WASD</td><td>Left stick / D-pad</td></tr>
-                  <tr><th scope="row">Start / retry</th><td>Tap a mode / Retry</td><td>Enter / Space</td><td>A</td></tr>
-                  <tr><th scope="row">Pause</th><td>Pause button</td><td>Esc / P</td><td>Start</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <p class="table-note">Optional inverted Y axis. Phones play in landscape.</p>
-          </details>
-          <ul class="tags" aria-label="Built with"><li>Three.js</li><li>Vite</li><li>PWA</li><li>WebAudio</li><li>node:test</li></ul>
-          <div class="actions">
-            <a class="btn cyan" href="https://manishmajhimidackertech.github.io/Tunnel-Arcade/">▶ Play Tunnel Arcade</a>
-            <a class="btn" href="https://github.com/manishmajhimidackertech/Tunnel-Arcade">
-              <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-              Source code
-            </a>
-          </div>
-        </div>
-      </article>
-
       <!-- ================= Hostile Horizon ================= -->
-      <article class="project horizon flip" id="hostile-horizon" aria-labelledby="hh-title">
+      <article class="project horizon" id="hostile-horizon" aria-labelledby="hh-title">
         <figure class="gallery" data-gallery>
           <a class="shot-main" href="assets/shots/horizon-coast.webp">
             <img src="assets/shots/horizon-coast.webp"
                  srcset="assets/shots/horizon-coast-640.webp 640w, assets/shots/horizon-coast.webp 1280w"
                  sizes="(min-width: 1120px) 570px, (min-width: 960px) 52vw, 100vw"
-                 width="1280" height="720" alt="Hostile Horizon: an A-12 Thunderbolt fires on the Dreadnought Battleship boss beside a chain of palm islands" loading="lazy">
+                 width="1280" height="720" alt="Hostile Horizon: an A-12 Thunderbolt fires on the Dreadnought Battleship boss beside a chain of palm islands">
           </a>
           <figcaption>Coastal Assault: an A-12 Thunderbolt takes on the Dreadnought Battleship</figcaption>
           <ul class="thumbs" aria-label="Hostile Horizon screenshots">
@@ -445,6 +364,87 @@
           <div class="actions">
             <a class="btn warm" href="https://manishmajhimidackertech.github.io/Hostile-Horizon/">▶ Play Hostile Horizon</a>
             <a class="btn" href="https://github.com/manishmajhimidackertech/Hostile-Horizon">
+              <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+              Source code
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ================= Tunnel Arcade ================= -->
+      <article class="project tunnel flip" id="tunnel-arcade" aria-labelledby="ta-title">
+        <figure class="gallery" data-gallery>
+          <a class="shot-main" href="assets/shots/tunnel-reactor.webp">
+            <img src="assets/shots/tunnel-reactor.webp"
+                 srcset="assets/shots/tunnel-reactor-640.webp 640w, assets/shots/tunnel-reactor.webp 1280w"
+                 sizes="(min-width: 1120px) 570px, (min-width: 960px) 52vw, 100vw"
+                 width="1280" height="720" alt="Tunnel Arcade: the ship lines up with a spinning spoke door in the Reactor tunnel" loading="lazy">
+          </a>
+          <figcaption>Reactor: lining up with a spinning spoke door</figcaption>
+          <ul class="thumbs" aria-label="Tunnel Arcade screenshots">
+            <li><button type="button" class="thumb" aria-pressed="true" data-shot="tunnel-reactor"
+              data-caption="Reactor: lining up with a spinning spoke door"
+              data-alt="Tunnel Arcade: the ship lines up with a spinning spoke door in the Reactor tunnel"><img src="assets/shots/tunnel-reactor-640.webp" alt="Reactor tunnel" width="640" height="360" loading="lazy"></button></li>
+            <li><button type="button" class="thumb" aria-pressed="false" data-shot="tunnel-laboratory"
+              data-caption="Laboratory: white chevron panels and a bow-tie door"
+              data-alt="Tunnel Arcade: the ship heads for a door with a bow-tie-shaped gap in the white Laboratory tunnel"><img src="assets/shots/tunnel-laboratory-640.webp" alt="Laboratory tunnel" width="640" height="360" loading="lazy"></button></li>
+            <li><button type="button" class="thumb" aria-pressed="false" data-shot="tunnel-bunker"
+              data-caption="Bunker: the glowing hourglass that slows down time"
+              data-alt="Tunnel Arcade: a glowing gold hourglass pickup floats ahead of the ship in the concrete Bunker tunnel"><img src="assets/shots/tunnel-bunker-640.webp" alt="Bunker tunnel with a slow-motion pickup" width="640" height="360" loading="lazy"></button></li>
+            <li><button type="button" class="thumb" aria-pressed="false" data-shot="tunnel-catacomb"
+              data-caption="Catacomb: drifting mines in Mine Mode"
+              data-alt="Tunnel Arcade: spiked mines drift through the sandstone Catacomb tunnel in Mine Mode"><img src="assets/shots/tunnel-catacomb-640.webp" alt="Catacomb tunnel in Mine Mode" width="640" height="360" loading="lazy"></button></li>
+            <li><button type="button" class="thumb" aria-pressed="false" data-shot="tunnel-menu"
+              data-caption="Title screen: Classic or Mine Mode"
+              data-alt="Tunnel Arcade title screen with Classic, Mine Mode, Settings and How to Play buttons"><img src="assets/shots/tunnel-menu-640.webp" alt="Title screen" width="640" height="360" loading="lazy"></button></li>
+          </ul>
+        </figure>
+
+        <div class="info">
+          <div class="info-head">
+            <img src="assets/tunnel-arcade.svg" alt="" width="56" height="56">
+            <div>
+              <h3 id="ta-title">Tunnel Arcade</h3>
+              <p class="kicker">Endless 3D tunnel flyer</p>
+            </div>
+          </div>
+          <p>
+            Pilot a small ship through an endless, twisting tunnel. Slip through the gaps in the doors,
+            dodge the bars and, in Mine Mode, steer around drifting mines. The tunnel curves, rolls and changes
+            style the deeper you fly, and the pace keeps building. Inspired by the mobile classic <em>Tunnel Trouble 3D</em>.
+          </p>
+          <dl class="stats">
+            <div><dt>game modes</dt><dd>2</dd></div>
+            <div><dt>tunnel styles</dt><dd>4</dd></div>
+            <div><dt>obstacle shapes</dt><dd>11</dd></div>
+            <div><dt>ways to steer</dt><dd>4</dd></div>
+          </dl>
+          <ul class="features">
+            <li><strong>Slow-motion pickups.</strong> Grab the glowing hourglass to ease the world down to under half speed
+              for a few seconds. Each one sits on a line that's guaranteed safe to fly through the next obstacle.</li>
+            <li><strong>Tilt steering</strong> on phones and tablets, alongside the floating joystick, keyboard and gamepad.</li>
+            <li>Doors with triangle, half, slot, cross, circle and spoke openings, plus striped bars. Spinning versions unlock as you speed up.</li>
+            <li>Four styles modelled on the original: Reactor, Laboratory, Bunker and Catacomb. Best score kept per mode.</li>
+            <li>LED dot-matrix “3-2-1-GO!” countdown and a synthwave soundtrack synthesised with WebAudio.</li>
+          </ul>
+          <details class="controls">
+            <summary>Controls</summary>
+            <div class="table-scroll">
+              <table>
+                <thead><tr><th scope="col">Action</th><th scope="col">Touch</th><th scope="col">Keyboard</th><th scope="col">Gamepad</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">Steer</th><td>Drag anywhere, or tilt</td><td>Arrows / WASD</td><td>Left stick / D-pad</td></tr>
+                  <tr><th scope="row">Start / retry</th><td>Tap a mode / Retry</td><td>Enter / Space</td><td>A</td></tr>
+                  <tr><th scope="row">Pause</th><td>Pause button</td><td>Esc / P</td><td>Start</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="table-note">Optional inverted Y axis. Phones play in landscape.</p>
+          </details>
+          <ul class="tags" aria-label="Built with"><li>WebGL 2</li><li>Vite</li><li>PWA</li><li>WebAudio</li><li>node:test</li></ul>
+          <div class="actions">
+            <a class="btn cyan" href="https://manishmajhimidackertech.github.io/Tunnel-Arcade/">▶ Play Tunnel Arcade</a>
+            <a class="btn" href="https://github.com/manishmajhimidackertech/Tunnel-Arcade">
               <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
               Source code
             </a>

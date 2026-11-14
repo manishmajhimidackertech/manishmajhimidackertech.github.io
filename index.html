@@ -221,6 +221,33 @@
   </header>
 
   <main class="wrap">
+    <!-- ================= How they're built ================= -->
+    <section id="built" aria-labelledby="built-title">
+      <h2 id="built-title">How they're built</h2>
+      <div class="pillars">
+        <div class="pillar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7z"/><path d="M12 22V12M20.66 7L12 12 3.34 7"/></svg>
+          <h3>Generated in code</h3>
+          <p>Every 3D model, pixel-art sprite, texture, sound effect and music track is created at runtime. Apart from the app icons, there are no image or audio files to download.</p>
+        </div>
+        <div class="pillar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.55a11 11 0 0114.08 0M1.42 9a16 16 0 0121.16 0M8.53 16.11a6 6 0 016.95 0"/><path d="M12 20h.01"/><path d="M2 2l20 20"/></svg>
+          <h3>Plays offline</h3>
+          <p>A service worker precaches each game, so once it has loaded it runs without a connection. Updates install in the background.</p>
+        </div>
+        <div class="pillar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="3"/><path d="M6 12h4M8 10v4"/><path d="M15 11h.01M18 13h.01"/></svg>
+          <h3>Any device, any input</h3>
+          <p>Touch, keyboard and mouse, gamepads in the 3D games, and tilt steering in Tunnel Arcade. On phones they play full screen: the 3D games in landscape, Torrondola in portrait.</p>
+        </div>
+        <div class="pillar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 0114-5.3L20 9"/><path d="M20 4v5h-5"/><path d="M20 12a8 8 0 01-14 5.3L4 15"/><path d="M4 20v-5h5"/></svg>
+          <h3>Built and shipped by CI</h3>
+          <p>The 3D games use Three.js and Vite; Torrondola is plain ES modules with no build step. GitHub Actions deploys each game to GitHub Pages on every push, after running Tunnel Arcade's unit tests.</p>
+        </div>
+      </div>
+    </section>
+
     <section id="projects" aria-labelledby="projects-title">
       <h2 id="projects-title">Projects</h2>
 
@@ -485,33 +512,6 @@
           </div>
         </div>
       </article>
-    </section>
-
-    <!-- ================= How they're built ================= -->
-    <section id="built" aria-labelledby="built-title">
-      <h2 id="built-title">How they're built</h2>
-      <div class="pillars">
-        <div class="pillar">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7z"/><path d="M12 22V12M20.66 7L12 12 3.34 7"/></svg>
-          <h3>Generated in code</h3>
-          <p>Every 3D model, pixel-art sprite, texture, sound effect and music track is created at runtime. Apart from the app icons, there are no image or audio files to download.</p>
-        </div>
-        <div class="pillar">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.55a11 11 0 0114.08 0M1.42 9a16 16 0 0121.16 0M8.53 16.11a6 6 0 016.95 0"/><path d="M12 20h.01"/><path d="M2 2l20 20"/></svg>
-          <h3>Plays offline</h3>
-          <p>A service worker precaches each game, so once it has loaded it runs without a connection. Updates install in the background.</p>
-        </div>
-        <div class="pillar">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="3"/><path d="M6 12h4M8 10v4"/><path d="M15 11h.01M18 13h.01"/></svg>
-          <h3>Any device, any input</h3>
-          <p>Touch, keyboard and mouse, gamepads in the 3D games, and tilt steering in Tunnel Arcade. On phones they play full screen: the 3D games in landscape, Torrondola in portrait.</p>
-        </div>
-        <div class="pillar">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 0114-5.3L20 9"/><path d="M20 4v5h-5"/><path d="M20 12a8 8 0 01-14 5.3L4 15"/><path d="M4 20v-5h5"/></svg>
-          <h3>Built and shipped by CI</h3>
-          <p>The 3D games use Three.js and Vite; Torrondola is plain ES modules with no build step. GitHub Actions deploys each game to GitHub Pages on every push, after running Tunnel Arcade's unit tests.</p>
-        </div>
-      </div>
     </section>
   </main>
 
